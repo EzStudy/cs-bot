@@ -4,6 +4,9 @@ CS 봇
 
 - CS 관련 문제를 풀 수 있는 챗봇입니다.
 
+### 스토리 보드
+https://docs.google.com/presentation/d/1DwvXp281O7-9I3qLnVmeTQUV3x-PnQ8uXMTsabraNXs/edit?usp=sharing
+
 ## [](https://github.com/EzStudy/CS-Bot#%EA%B8%B0%EB%8A%A5)기능
 
 ### [](https://github.com/EzStudy/CS-Bot#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B1%97%EB%B4%87%EB%AC%B8%EC%A0%9C)사용자 챗봇문제
