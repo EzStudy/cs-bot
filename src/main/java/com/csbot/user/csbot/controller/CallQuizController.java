@@ -11,7 +11,7 @@ public class CallQuizController {
 
     @PostMapping("/CallQuiz")
     public String callQuiz(HttpServletRequest req, HttpServletResponse resp){
-        System.out.println(req);
+        System.out.println("Post called");
         return "quiz";
     }
 }
