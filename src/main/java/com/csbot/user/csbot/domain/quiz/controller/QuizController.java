@@ -15,6 +15,7 @@ public class QuizController {
     QuizService quizService;
     @PostMapping("/CallQuiz")
     public Map<String, Object> callQuiz(){
+        System.out.println("Called callQuiz");
         return quizService.makeQuizBlock();
     }
 }
