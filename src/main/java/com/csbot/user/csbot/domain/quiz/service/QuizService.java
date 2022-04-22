@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuizService {
 
-    public String makeQuizBlock(){
+    public Map<String, Object> makeQuizBlock(){
 
         //버튼 생성
         List<BaseResponseDto> buttons = makeButton();
@@ -30,9 +30,7 @@ public class QuizService {
         Map<String, Object> contents = new HashMap<>();
         contents.put("contents",content);
 
-        Gson gson = new Gson();
-        JsonObject obj = new JsonObject();
-        return gson.toJson(contents);
+        return contents;
     }
 
     private List<CardResponseDto> makeCard(List<BaseResponseDto> buttons) {
