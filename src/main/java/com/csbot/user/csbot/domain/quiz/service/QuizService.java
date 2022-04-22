@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuizService {
 
-    public Map<String, Object> makeQuizBlock(){
+    public Map<String, List<ContentResponseDto>> makeQuizBlock(){
 
         //버튼 생성
         List<BaseResponseDto> buttons = makeButton();
@@ -27,8 +27,8 @@ public class QuizService {
         content.setType("card.text");
         content.setCards(cards);
 
-        Map<String, Object> contents = new HashMap<>();
-        contents.put("contents",content);
+        Map<String, List<ContentResponseDto>> contents = new HashMap<>();
+        contents.put("contents",Arrays.asList(content));
 
         return contents;
     }
