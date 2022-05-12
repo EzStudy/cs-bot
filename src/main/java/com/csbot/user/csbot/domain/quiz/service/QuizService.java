@@ -46,7 +46,7 @@ public class QuizService {
             .type("block")
             .label("1. jvm")
             .action("block")
-            .data(new DataResponseDto()).build();
+            .data(new DataResponseDto("622c605e1d94835b78e72290",null)).build();
         BaseResponseDto button2 = BaseResponseDto.builder()
             .type("block")
             .label("2. linux")

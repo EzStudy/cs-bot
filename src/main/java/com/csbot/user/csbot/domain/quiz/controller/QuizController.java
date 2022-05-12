@@ -2,14 +2,9 @@ package com.csbot.user.csbot.domain.quiz.controller;
 
 import com.csbot.user.csbot.domain.quiz.service.QuizService;
 import com.csbot.user.csbot.global.dto.ContentResponseDto;
-import com.google.gson.Gson;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.csbot.user.csbot.global.dto.SimpleTextResponseDto;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +26,21 @@ public class QuizController {
         System.out.println("Called callQuiz");
 
         return quizService.makeQuizBlock();
+    }
+
+    @PostMapping("/checkAnswer")
+    public SimpleTextResponseDto checkAnswer(@RequestBody Map<String, Object> body){
+        Map<String, Object> body2 = (Map<String, Object>) body.get("userRequest");
+        String utterance = body2.get("utterance").toString();
+
+        SimpleTextResponseDto result = new SimpleTextResponseDto();
+        if("1. jvm".equals(utterance)) {
+            result.setSimpleText("정답입니다.!!");
+            return result;
+        }else{
+            result.setSimpleText("오답입니다.!!");
+            return result;
+        }
     }
 }
 
