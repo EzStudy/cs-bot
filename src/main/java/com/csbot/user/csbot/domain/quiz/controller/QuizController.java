@@ -30,10 +30,7 @@ public class QuizController {
 
         System.out.println("Called callQuiz");
 
-        Map<String, List<ContentResponseDto>> result = quizService.makeQuizBlock();
-        String jsonToResult = new Gson().toJson(result);
-        //System.out.println(jsonToResult);
-        return result;
+        return quizService.makeQuizBlock();
     }
 }
 
