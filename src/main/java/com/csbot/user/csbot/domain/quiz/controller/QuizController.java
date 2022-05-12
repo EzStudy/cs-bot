@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,41 +22,19 @@ public class QuizController {
     @Autowired
     QuizService quizService;
     @PostMapping("/CallQuiz")
-    public Map<String, List<ContentResponseDto>> callQuiz(HttpServletRequest request, HttpServletResponse response){
-        String body = null;
-        StringBuilder stringBuilder = new StringBuilder();
-        BufferedReader bufferedReader = null;
+    public Map<String, List<ContentResponseDto>> callQuiz(@RequestBody Map<String, Object> body, HttpServletResponse response){
+        Map<String, Object> body2 = (Map<String, Object>) body.get("userRequest");
+        String utterance = body2.get("utterance").toString();
 
-        try {
-            InputStream inputStream = request.getInputStream();
-            if (inputStream != null) {
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                char[] charBuffer = new char[128];
-                int bytesRead = -1;
-                while ((bytesRead = bufferedReader.read(charBuffer)) > 0) {
-                    stringBuilder.append(charBuffer, 0, bytesRead);
-                }
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        } finally {
-            if (bufferedReader != null) {
-                try {
-                    bufferedReader.close();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-            }
-        }
-
-        body = stringBuilder.toString();
-        System.out.println(body);
+        System.out.println("Utterance : " + utterance);
 
         System.out.println("Called callQuiz");
 
         Map<String, List<ContentResponseDto>> result = quizService.makeQuizBlock();
         String jsonToResult = new Gson().toJson(result);
-        System.out.println(jsonToResult);
+        //System.out.println(jsonToResult);
         return result;
     }
 }
+
+//{block={id=623ea0893639626c92ed7c68, name=문제 풀기 블록 스킬 서버}, user={id=2674bbc5576b7cea3564cf8c6d3fdc4aeb26d4612a0afc0e4c009a0754ebc61b63, type=botUserKey, properties={botUserKey=2674bbc5576b7cea3564cf8c6d3fdc4aeb26d4612a0afc0e4c009a0754ebc61b63, isFriend=true, plusfriendUserKey=C0OUcNEy1kA0, bot_user_key=2674bbc5576b7cea3564cf8c6d3fdc4aeb26d4612a0afc0e4c009a0754ebc61b63, plusfriend_user_key=C0OUcNEy1kA0}}, utterance=문제 풀기 스킬 서버, params={surface=Kakaotalk.plusfriend}, lang=ko, timezone=Asia/Seoul}
